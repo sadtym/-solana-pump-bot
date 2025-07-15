@@ -1,0 +1,19 @@
+{
+  "name": "solana-pump-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot for detecting and analyzing pumped tokens on Solana network.",
+  "main": "bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.95.2",
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "lowdb": "^6.0.1",
+    "node-cron": "^3.0.3",
+    "node-telegram-bot-api": "^0.61.0"
+  }
+}

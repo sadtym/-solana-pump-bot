@@ -1,0 +1,32 @@
+[
+  {
+    "address": "token1",
+    "symbol": "TKN1",
+    "priceStart": 0.1,
+    "priceNow": 0.15,
+    "priceChange": 50,
+    "marketCap": 12000,
+    "liquidity": 6000,
+    "volume24h": 15000,
+    "volatility": 20,
+    "age": "2 ساعت",
+    "tradeable": true,
+    "lpLock": 90,
+    "risk": "کم"
+  },
+  {
+    "address": "token2",
+    "symbol": "TKN2",
+    "priceStart": 0.2,
+    "priceNow": 0.22,
+    "priceChange": 10,
+    "marketCap": 9000,
+    "liquidity": 4000,
+    "volume24h": 8000,
+    "volatility": 8,
+    "age": "5 ساعت",
+    "tradeable": false,
+    "lpLock": 70,
+    "risk": "زیاد"
+  }
+]

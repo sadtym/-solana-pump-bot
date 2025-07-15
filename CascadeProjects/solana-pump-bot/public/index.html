@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>داشبورد پامپ سولانا</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Vazirmatn, Tahoma, sans-serif; background: #191c24; color: #fff; }
+    h1 { text-align: center; margin-top: 20px; }
+    table { width: 98%; margin: 20px auto; border-collapse: collapse; background: #23263a; }
+    th, td { padding: 8px 4px; border: 1px solid #333; text-align: center; }
+    th { background: #2d3147; }
+    tr:nth-child(even) { background: #20233a; }
+    .chart-link { color: #00e; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>📈 داشبورد پامپ توکن‌های سولانا</h1>
+  <table id="tokens-table">
+    <thead>
+      <tr>
+        <th>نماد</th>
+        <th>قیمت اولیه</th>
+        <th>قیمت فعلی</th>
+        <th>رشد (%)</th>
+        <th>مارکت کپ</th>
+        <th>نقدینگی</th>
+        <th>حجم 24h</th>
+        <th>سن</th>
+        <th>LP Lock</th>
+        <th>ریسک</th>
+        <th>ترید</th>
+        <th>نمودار</th>
+      </tr>
+    </thead>
+    <tbody id="tokens-body">
+      <tr><td colspan="12">در حال بارگذاری...</td></tr>
+    </tbody>
+  </table>
+  <script>
+    async function fetchTokens() {
+      const res = await fetch('/api/tokens');
+      const tokens = await res.json();
+      const tbody = document.getElementById('tokens-body');
+      tbody.innerHTML = '';
+      if (!tokens.length) {
+        tbody.innerHTML = '<tr><td colspan="12">هیچ توکن پامپ‌شده‌ای یافت نشد.</td></tr>';
+        return;
+      }
+      for (const t of tokens) {
+        tbody.innerHTML += `
+        <tr>
+          <td>#${t.symbol}</td>
+          <td>${t.priceStart}$</td>
+          <td>${t.priceNow}$</td>
+          <td>${t.priceChange}%</td>
+          <td>${t.marketCap}$</td>
+          <td>${t.liquidity}$</td>
+          <td>${t.volume24h}$</td>
+          <td>${t.age}</td>
+          <td>${t.lpLock}%</td>
+          <td>${t.risk}</td>
+          <td>${t.tradeable ? '✅' : '❌'}</td>
+          <td><a class="chart-link" href="https://birdeye.so/token/${t.address}" target="_blank">نمودار</a></td>
+        </tr>`;
+      }
+    }
+    fetchTokens();
+    setInterval(fetchTokens, 30000);
+  </script>
+</body>
+</html>
